@@ -31,6 +31,7 @@ import Footer from "../Nav/Footer";
 
 export interface PageProps {
   navProps?: NavProps;
+  children?: any
 }
 
 const Page: React.FC<PageProps> = ({ navProps, children }) => {

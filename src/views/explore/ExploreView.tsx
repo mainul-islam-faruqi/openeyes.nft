@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useCallback, useRef } from "react";
 import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { NFTCard, TokenFilter, TokenFlag } from "types/graphql";
@@ -10,7 +11,7 @@ import {
   FilterLayoutSidebar,
   FILTER_LAYOUT_CONTENT_PADDING,
 } from "components/Layout/FilterLayout";
-import { FilterButton } from "components/Buttons";
+import { FilterButton } from "components/Buttons/FilterButton";
 import MobileFilterModal from "components/Modals/MobileFilterModal";
 import ExploreNftsFilters from "components/NftsPanel/ExploreNftsFilters";
 import { ActivityFilters, ActivityPanel, MobileActivityFilters } from "components/Activity";

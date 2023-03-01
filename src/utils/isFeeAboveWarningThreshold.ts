@@ -1,4 +1,4 @@
-import { ROYALTY_FEE_WARNING_THRESHOLD } from "config";
+import { ROYALTY_FEE_WARNING_THRESHOLD } from "config/constants";
 
 /**
  * Numeric evaluation of whether a royalty fee is greater than the ROYALTY_FEE_WARNING_THRESHOLD.

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { NextSeo } from "next-seo";
 import { GetServerSideProps } from "next";
 import { dehydrate, QueryClient } from "react-query";
@@ -30,6 +30,7 @@ const ExplorePage: React.FC<ExplorePageProps> = ({ initialTokenFilter, initialTo
 
   return (
     <Page navProps={navProps}>
+      <h1> Explore </h1>
       <NextSeo
         title={t("Explore")}
         description={t(
@@ -54,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale, query, re
 
   try {
     await queryClient.prefetchInfiniteQuery(collectionsKeys.collectionsFilters({ sort: collectionsFiltersSort }), () =>
-      getCollectionsFilters({ sort: collectionsFiltersSort }, '') // headers
+      getCollectionsFilters({ sort: collectionsFiltersSort }, ) // headers
     );
     const initialTokenFilter: TokenFilter = { ...getTokenFilterQuery(query) };
     const defaultSort: TokensSort = TokensSort.LAST_RECEIVED;

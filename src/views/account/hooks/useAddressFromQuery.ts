@@ -1,5 +1,5 @@
 import { useWeb3React } from "@web3-react/core";
-import { USER_ACCOUNT_URI } from "config";
+import { USER_ACCOUNT_URI } from "config/urls";
 import { useRouter } from "next/router";
 
 /**

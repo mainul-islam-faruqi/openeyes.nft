@@ -2,7 +2,7 @@ import { Divider, Flex, VStack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { Button, Text, WarningIcon } from "uikit";
 import { useMultiselect } from "components/Multiselect/hooks/useMultiselect";
-import { DurationPicker } from "components/DurationPicker";
+import { DurationPicker } from "components/DurationPicker/DurationPicker";
 
 interface ScheduleViewProps {
   isPriceValid: boolean;
