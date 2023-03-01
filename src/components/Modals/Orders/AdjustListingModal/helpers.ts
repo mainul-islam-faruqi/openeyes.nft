@@ -1,0 +1,6 @@
+export enum View {
+  ORDER_SELECT,
+  PRICE_ADJUSTMENT,
+  TRANSACTION,
+  CONFIRMATION,
+}
