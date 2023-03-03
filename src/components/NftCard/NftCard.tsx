@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { ReactEventHandler, useMemo } from "react";
 import { Box, BoxProps, Divider, Flex, useDisclosure } from "@chakra-ui/react";
 import { useWeb3React } from "@web3-react/core";

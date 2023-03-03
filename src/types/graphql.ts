@@ -405,6 +405,7 @@ export enum CollectionInternalSort {
 }
 
 // Similar to "RelativeCollectionsSort", this only contains sorts used on the FE
+
 export enum CollectionsSort {
   VOL_24H_DESC = "VOL_24H_DESC",
   VOL_7D_DESC = "VOL_7D_DESC",
@@ -416,6 +417,7 @@ export enum CollectionsSort {
   VOL_CHANGE_7D_ASC = "VOL_CHANGE_7D_ASC",
   VOL_CHANGE_1M_DESC = "VOL_CHANGE_1M_DESC",
   VOL_CHANGE_1M_ASC = "VOL_CHANGE_1M_ASC",
+  HIGHEST_24H = "HIGHEST_24H"
 }
 
 /**
@@ -689,10 +691,10 @@ export interface Watchlist {
 //   } | null;
 // }
 
-// export interface TokenOwner {
-//   address: string;
-//   balance: BigNumberish;
-// }
+export interface TokenOwner {
+  address: string;
+  balance: BigNumberish;
+}
 
 // // Not intended to be used except for extending
 // interface NftBase {

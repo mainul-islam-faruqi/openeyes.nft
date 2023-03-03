@@ -42,7 +42,7 @@ const PanelCardGrid = ({
       <CardGrid isFilterCollapsed={isFilterCollapsed} isMultiselectCollapsed={isMultiselectCollapsed}>
         {isSuccess &&
           nfts?.map((nft) => {
-            const key = nft.collection.address + nft.tokenId;
+            const key = nft?.collection.address + nft?.tokenId;
             return (
               <LazyLoad offset={800} key={key} placeholder={<NftCardLoadingSkeleton />} style={{ width: "100%" }}>
                 {isMultiselectGrid ? (

@@ -72,7 +72,7 @@ export const tokenKeys = {
 };
 
 const getNextTokensPageParam = (lastPage: NFTCard[]): Pagination | undefined => {
-  if (lastPage.length < TOKENS_PER_PAGE) {
+  if (lastPage?.length < TOKENS_PER_PAGE) {
     // No more data to fetch
     return undefined;
   }

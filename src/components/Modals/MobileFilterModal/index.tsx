@@ -1,3 +1,5 @@
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
+import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
 import { ModalBody, ModalFooterGrid, Modal, Text, Button } from "uikit";
 
@@ -5,6 +7,7 @@ interface ModalWrapperProps {
   isOpen: boolean;
   onClose: () => void;
   onResetAll: () => void;
+  children: ReactJSXElement;
 }
 
 const MobileFilterModal: React.FC<ModalWrapperProps> = ({ isOpen, onClose, onResetAll, children }) => {

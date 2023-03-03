@@ -13,7 +13,7 @@ export const graphql = async (
   query: string,
   params?: Record<string, any>,
   requestHeaders?: HeadersInit,
-  url = currentChainInfo.apiUrl
+  url = currentChainInfo?.apiUrl
 ) => {
   try {
     const res = await request(url, query, params, requestHeaders);
