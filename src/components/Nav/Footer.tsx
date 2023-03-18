@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
   return (
     <Box pt="112px" px={{ base: 0, md: 4 }} borderTop="1px solid" borderTopColor="border-01">
       <Flex alignItems="center" flexWrap="wrap" p={4}>
-        <Text as="span">{`Copyright ${thisYear} LooksRare`}</Text>
+        <Text as="span">{`Copyright ${thisYear} OpenEyes.nft`}</Text>
         <Text as="span" color="interactive-01" bold mx={2}>
           |
         </Text>

@@ -199,7 +199,7 @@ export const AcceptOrder = ({
           {t("Invalid Offer/Bid")}
         </Text>
         <Text color="text-02" textStyle="detail" mb={4}>
-          {t("Sorry, it looks like the person who offered to buy this NFT has revoked WETH approval on LooksRare.")}
+          {t("Sorry, it looks like the person who offered to buy this NFT has revoked WETH approval on OpenEyes.nft.")}
         </Text>
         <Text color="text-02" textStyle="detail">
           {t("We'll remove this offer in a moment so you don't see it again.")}
@@ -324,7 +324,7 @@ export const AcceptOrder = ({
             <CreatorFeePopover display="inline-flex" fee={creatorFee} isWarning={isFeeWarning} />
           </Text>
           <Text textAlign="right" color="text-02">
-            LooksRare: <ProtocolFeePopover color="text-02" display="inline-flex" fee={protocolFeeQuery.data} />
+            OpenEyes.nft: <ProtocolFeePopover color="text-02" display="inline-flex" fee={protocolFeeQuery.data} />
           </Text>
         </Grid>
         <Divider my={4} />

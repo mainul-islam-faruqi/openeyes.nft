@@ -157,7 +157,7 @@ export const BuyNow = ({
             )}
           </Text>
           <Text color="text-02" textStyle="detail">
-            {t("You won't be able to buy it unless the seller approves the collection for sale on LooksRare again.")}
+            {t("You won't be able to buy it unless the seller approves the collection for sale on OpenEyes.nft again.")}
           </Text>
         </Box>
       </InvalidOrderView>

@@ -1,9 +1,9 @@
 import { DefaultSeoProps } from "next-seo";
 import { currentChainInfo } from "./chains";
 
-const title = "LooksRare";
+const title = "OpenEyes.nft";
 export const seoBaseDescription =
-  "LooksRare is a next generation NFT market. Buy NFTs, sell NFTs… or just HODL: Collectors, traders, and creators alike earn passive income! 👀💎";
+  "OpenEyes.nft is a next generation NFT market. Buy NFTs, sell NFTs… or just HODL: Collectors, traders, and creators alike earn passive income! 👀💎";
 export const seoBaseImage = {
   url: `${currentChainInfo.appUrl}/images/meta-2.png`,
   width: 1200,

@@ -16,7 +16,7 @@ export const ConnectWalletModalGuard: React.FC = ({ children }) => {
           {t("Connect a Wallet")}
         </Text>
         <Text textStyle="detail" color="text-02" mb={6}>
-          {t("LooksRare works great with Metamask, Coinbase Wallet, and most other Ethereum wallets.")}
+          {t("OpenEyes.nft works great with Metamask, Coinbase Wallet, and most other Ethereum wallets.")}
         </Text>
         <ConnectWalletButton />
       </Box>

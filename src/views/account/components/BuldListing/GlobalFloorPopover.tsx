@@ -23,7 +23,7 @@ export const GlobalFloorPopover = ({ looksFloorEth, osFloorEth, globalFloor }: G
             <Flex justifyContent="space-between" alignItems="center">
               <Flex alignItems="center">
                 <LogoRoundIcon boxSize={4} mr={1} />
-                <TooltipText>{t("Floor on LooksRare")}:</TooltipText>
+                <TooltipText>{t("Floor on OpenEyes.nft")}:</TooltipText>
               </Flex>
               <Flex alignItems="center">
                 <EthIcon boxSize={4} />

@@ -25,7 +25,7 @@ const AccountSeo: React.FC<Props> = ({ user }) => {
           nofollow
           title={t("Your account")}
           openGraph={{
-            title: t("{{pageTitle}} | LooksRare", { pageTitle: t("Your Account") }),
+            title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: t("Your Account") }),
             url: `${currentChainInfo.appUrl}/accounts/me`,
           }}
         />
@@ -36,7 +36,7 @@ const AccountSeo: React.FC<Props> = ({ user }) => {
           title={user?.name || formatAddress(queryAddress)}
           description={user?.biography || seoBaseDescription}
           openGraph={{
-            title: t("{{pageTitle}} | LooksRare", { pageTitle: user?.name || formatAddress(queryAddress) }),
+            title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: user?.name || formatAddress(queryAddress) }),
             description: user?.biography || seoBaseDescription,
             url: `${currentChainInfo.appUrl}/accounts/${queryAddress}`,
           }}

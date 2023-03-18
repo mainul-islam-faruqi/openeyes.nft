@@ -36,7 +36,7 @@ const FloorPriceWarningView: React.FC<Props> = ({
                 <Text as="span" color="text-warning" textStyle="detail">
                   {{ floorDiffPercentStringDisplay }}% lower
                 </Text>{" "}
-                than the price of any other NFT from this collection on LooksRare.
+                than the price of any other NFT from this collection on OpenEyes.nft.
               </Text>
             </Trans>
             <Text textStyle="detail">{t("List anyway?")}</Text>

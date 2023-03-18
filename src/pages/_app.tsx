@@ -45,7 +45,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       {/* <DefaultSeo {...seoConfig} /> */}
       {/* <SocialProfileJsonLd
         type="Organization"
-        name="LooksRare"
+        name="OpenEyes.nft"
         url={currentChainInfo.appUrl}
         sameAs={["https://twitter.com/looksrarenft"]}
       /> */}

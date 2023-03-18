@@ -54,7 +54,7 @@ const chains = wagmiConfig.chains;
 const defaultWallets = [
   wallet.injected({ chains }),
   wallet.rainbow({ chains }),
-  wallet.coinbase({ appName: "LooksRare", chains }),
+  wallet.coinbase({ appName: "OpenEyes.nft", chains }),
   wallet.metaMask({ chains, shimDisconnect: true }),
   wallet.walletConnect({ chains }),
   wallet.brave({ chains, shimDisconnect: true }),

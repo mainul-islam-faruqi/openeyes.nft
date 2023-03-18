@@ -26,7 +26,7 @@ export const ConnectWalletPlaceholderPage: React.FC<BoxProps> = ({ children, ...
         </Text>
         {children || (
           <Text textStyle="detail" color="text-02" maxW="408px" textAlign="center">
-            {t("LooksRare works great with Metamask, Coinbase Wallet, and most other Ethereum wallets.")}
+            {t("OpenEyes.nft works great with Metamask, Coinbase Wallet, and most other Ethereum wallets.")}
           </Text>
         )}
         <ConnectWalletButton mt={6} round />

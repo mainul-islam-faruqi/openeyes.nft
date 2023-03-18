@@ -46,7 +46,7 @@ const HomeView: React.FC<Props> = ({ trendingNft, topCollections }) => {
               <Box>
                 <Box display="inline">
                   <Text as="h2" display="inline" color="text-02">
-                    {t("LooksRare is the community-first NFT marketplace with rewards for participating.")}
+                    {t("OpenEyes.nft is the community-first NFT marketplace with rewards for participating.")}
                   </Text>
                 </Box>
                 <Box>

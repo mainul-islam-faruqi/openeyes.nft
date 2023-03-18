@@ -33,13 +33,13 @@ const ExplorePage: React.FC<ExplorePageProps> = ({ initialTokenFilter, initialTo
       <NextSeo
         title={t("Explore")}
         description={t(
-          "Explore and trade popular NFT collections such as CryptoPunks and Bored Ape Yacht Club, on the LooksRare NFT Marketplace."
+          "Explore and trade popular NFT collections such as CryptoPunks and Bored Ape Yacht Club, on the OpenEyes.nft NFT Marketplace."
         )}
         openGraph={{
           url: `${currentChainInfo?.appUrl}/explore`,
-          title: t("{{pageTitle}} | LooksRare", { pageTitle: t("Explore") }),
+          title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: t("Explore") }),
           description: t(
-            "Explore and trade popular NFT collections such as CryptoPunks and Bored Ape Yacht Club, on the LooksRare NFT Marketplace."
+            "Explore and trade popular NFT collections such as CryptoPunks and Bored Ape Yacht Club, on the OpenEyes.nft NFT Marketplace."
           ),
         }}
       />

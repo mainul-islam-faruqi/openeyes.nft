@@ -42,9 +42,9 @@ const Home: React.FC<Props> = ({ topCollections }) => {
     // @ts-ignore
     <Page>
       <NextSeo
-        title={t("LooksRare - NFT Marketplace")}
+        title={t("OpenEyes.nft - NFT Marketplace")}
         openGraph={{
-          title: t("LooksRare - NFT Marketplace"),
+          title: t("OpenEyes.nft - NFT Marketplace"),
         }}
       />
       {hasTriedConnection && !isSnoozed && <ListingRewardBanner onDismiss={handleSnooze} />}

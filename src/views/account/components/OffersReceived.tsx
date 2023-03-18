@@ -28,7 +28,7 @@ export const OffersReceived: React.FC<Props> = ({ address }) => {
               {t("Earn LOOKS Tokens by accepting offers!")}
             </AlertTitle>
             <AlertDescription>
-              <div>{t("You earn LOOKS Trading Rewards every time you sell an item on LooksRare!")}</div>
+              <div>{t("You earn LOOKS Trading Rewards every time you sell an item on OpenEyes.nft!")}</div>
               <div>{t("Rewards are distributed once daily. (Private sales excluded)")}</div>
             </AlertDescription>
           </Box>

@@ -114,7 +114,7 @@ export const UnverifiedWarningView: React.FC<Props> = ({
           </Text>
         </Flex>
         <Text textStyle="detail" bold>
-          {t("This NFT's collection hasn't been verified by LooksRare.")}
+          {t("This NFT's collection hasn't been verified by OpenEyes.nft.")}
         </Text>
         <Text textStyle="detail" color="text-02">
           {t("Make sure it's legitimate before you buy.")}

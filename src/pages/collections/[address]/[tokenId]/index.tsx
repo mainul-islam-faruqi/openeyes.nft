@@ -61,7 +61,7 @@ const AssetPage: React.FC<Props> = ({ collectionAddress, tokenId, initialNft }) 
         description={token.description}
         openGraph={{
           url: `${currentChainInfo.appUrl}/collections/${collectionAddress}/${tokenId}`,
-          title: t("{{pageTitle}} | LooksRare", { pageTitle: title }),
+          title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: title }),
           description: token.description,
           images: [
             isVideo

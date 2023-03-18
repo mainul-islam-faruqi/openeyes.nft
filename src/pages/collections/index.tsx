@@ -18,7 +18,7 @@ const CollectionsPage: React.FC = () => {
       <NextSeo
         title={t("Collections")}
         openGraph={{
-          title: t("{{pageTitle}} | LooksRare", { pageTitle: t("Collections") }),
+          title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: t("Collections") }),
           url: `${currentChainInfo.appUrl}/collections`,
         }}
       />

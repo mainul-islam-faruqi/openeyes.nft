@@ -50,7 +50,7 @@ const DidYouKnow: React.FC = () => {
                 <Flex flexDirection="column">
                   <Text pb={8} color="gray.900">
                     {t(
-                      "… and when you also earn rewards for trading on LooksRare, why would you want to trade anywhere else?"
+                      "… and when you also earn rewards for trading on OpenEyes.nft, why would you want to trade anywhere else?"
                     )}
                   </Text>
                   {account && (
@@ -74,7 +74,7 @@ const DidYouKnow: React.FC = () => {
               rightElement={
                 <Flex flexDirection="column">
                   <Text pb={8} color="gray.900">
-                    {t("...and when you get rewards for trading with LooksRare, why would you trade anywhere else?")}
+                    {t("...and when you get rewards for trading with OpenEyes.nft, why would you trade anywhere else?")}
                   </Text>
                   {account && (
                     <Box>

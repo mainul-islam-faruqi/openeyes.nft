@@ -61,7 +61,7 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
           <WarningIcon color="support-warning" mr={4} />
           <Text color="text-02" textStyle="detail">
             {t(
-              "The price you've input for one of more listings is significantly lower than the price of any other NFT from this collection on LooksRare. List anyway?"
+              "The price you've input for one of more listings is significantly lower than the price of any other NFT from this collection on OpenEyes.nft. List anyway?"
             )}
           </Text>
         </Flex>

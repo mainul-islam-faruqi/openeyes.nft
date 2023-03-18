@@ -381,7 +381,7 @@ export const ListForSale = ({
             />
           </Text>
           <Text textAlign="right" color="text-02">
-            LooksRare: <ProtocolFeePopover color="text-02" display="inline-flex" fee={protocolFeeQuery.data} />
+            OpenEyes.nft: <ProtocolFeePopover color="text-02" display="inline-flex" fee={protocolFeeQuery.data} />
           </Text>
         </Grid>
       </ModalBody>

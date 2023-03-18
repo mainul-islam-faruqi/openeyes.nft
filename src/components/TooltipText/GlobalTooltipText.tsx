@@ -48,7 +48,7 @@ export const FloorTooltipText = ({
   return (
     <GlobalTooltipText
       titleText={hideTitle ? undefined : t("Lowest cross-marketplace floor price")}
-      textLr={t("Floor on {{platform}}", { platform: "LooksRare" })}
+      textLr={t("Floor on {{platform}}", { platform: "OpenEyes.nft" })}
       amountLr={formatToSignificant(amountLr, 4)}
       textOs={amountOs && t("Floor on {{platform}}", { platform: "OpenSea" })}
       amountOs={amountOs && formatToSignificant(amountOs, 4)}

@@ -16,7 +16,7 @@ const RewardsPage = () => {
       <NextSeo
         title={t("Rewards")}
         openGraph={{
-          title: t("{{pageTitle}} | LooksRare", { pageTitle: t("Rewards") }),
+          title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: t("Rewards") }),
           url: `${currentChainInfo.appUrl}/rewards`,
         }}
       />

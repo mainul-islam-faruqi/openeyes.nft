@@ -60,10 +60,10 @@ const BodyViews = [
     return (
       <>
         <Text bold textStyle="display-body" pb={6}>
-          {t("Welcome to LooksRare!")}
+          {t("Welcome to OpenEyes.nft!")}
         </Text>
         <Text textStyle="body" color="text-02" pb={2}>
-          {t("By using LooksRare, you agree to the")}{" "}
+          {t("By using OpenEyes.nft, you agree to the")}{" "}
           <Link isExternal fontWeight="bold" href="https://docs.looksrare.org/about/terms-of-service">
             {t("Terms of Service.")}
           </Link>
@@ -78,7 +78,7 @@ const BodyViews = [
       <>
         <Trans i18nKey="translateFirstTimeSellWethWarning">
           <Text color="text-02" textStyle="detail" mb={6}>
-            If someone buys an item from you on LooksRare,
+            If someone buys an item from you on OpenEyes.nft,
           </Text>
           <Text bold textStyle="heading-04">
             you receive payment in{" "}
@@ -95,7 +95,7 @@ const BodyViews = [
           label={
             <TooltipText>
               {t(
-                "WETH is Wrapped ETH. It's basically ETH that’s made to work better with smart contracts used by decentralized applications (like LooksRare!)"
+                "WETH is Wrapped ETH. It's basically ETH that’s made to work better with smart contracts used by decentralized applications (like OpenEyes.nft!)"
               )}
             </TooltipText>
           }

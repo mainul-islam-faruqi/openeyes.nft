@@ -43,7 +43,7 @@ export const ListingRewardHowItWorks = () => {
               </Text>
               <Text as="p" textStyle="helper" color="text-03" mb={4}>
                 {t(
-                  "Earn trading rewards when you buy or sell any NFT on LooksRare (private listings excluded). Rewards distributed once daily."
+                  "Earn trading rewards when you buy or sell any NFT on OpenEyes.nft (private listings excluded). Rewards distributed once daily."
                 )}
               </Text>
               <Link

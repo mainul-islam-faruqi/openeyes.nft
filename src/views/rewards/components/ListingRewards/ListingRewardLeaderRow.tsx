@@ -59,7 +59,7 @@ export const ListingRewardLeaderRow = memo(
             label={
               <GlobalTooltipText
                 titleText={t("Cross-marketplace volume within the current daily cycle")}
-                textLr={t("Vol. on {{platform}}", { platform: "LooksRare" })}
+                textLr={t("Vol. on {{platform}}", { platform: "OpenEyes.nft" })}
                 amountLr={formatToSignificant(volumeLr, 4)}
                 textOs={t("Vol. on {{platform}}", { platform: "OpenSea" })}
                 amountOs={formatToSignificant(volumeOs, 4)}
