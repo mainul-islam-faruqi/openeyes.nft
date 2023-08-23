@@ -119,6 +119,7 @@ export const getToken = async ({ collection, tokenId }: GetTokenParams, requestH
 
   const bids = res.token.bids.map((bid) => formatGqlOrder(bid));
   const ask = res.token.ask && formatGqlOrder(res.token.ask);
+  //@ts-ignore
   return { ...res.token, bids, ask };
 };
 

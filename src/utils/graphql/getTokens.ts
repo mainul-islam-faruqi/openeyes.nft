@@ -110,7 +110,7 @@ export const getTokens = async ({
   if (!res.tokens) {
     return [];
   }
-
+//@ts-ignore
   return res.tokens.map((token) => ({
     ...token,
     ask: token.ask && formatGqlOrder(token.ask),
@@ -183,7 +183,7 @@ export const getUserTokens = async ({
   if (!res?.user?.tokens) {
     return [];
   }
-
+//@ts-ignore
   return res.user.tokens.map((token) => ({
     ...token,
     ask: token.ask && formatGqlOrder(token.ask),

@@ -14,6 +14,7 @@ import { useEagerConnect } from "hooks/useEagerConnect";
 import HomeView from "views/home";
 import { ListingRewardBanner } from "views/rewards/components/ListingRewards/ListingRewardBanner";
 import Page from "components/Layout/Page";
+import { getTopNFTCollections } from "utils/api/NftCollection";
 
 interface Props {
   topCollections: CollectionBase[];
@@ -59,26 +60,44 @@ const COLLECTIONS_PARAMS: CollectionsParams = {
   filter: { isVerified: true, isWithRoyalty: APP_CHAIN_ID === 31337 ? false : true }, // don't apply isWithRoyalty on hardhat
 };
 
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-//   // const topCollections = await getCollectionsBase(COLLECTIONS_PARAMS, headers);
-//   const topCollections:any = [];
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  // const topCollections = await getCollectionsBase(COLLECTIONS_PARAMS, headers);
+  console.log('getStaticProps is called');
+  let topCollections:any = [];
+  const topCollection = getTopNFTCollections((err: any, data: { data: never[]; }) => {
+    if(err) return;
+    let nftCollections = data?.data || [];
+    topCollections = data?.data
+    console.log(data?.data)
+    return data?.data
+    // setTopNftCollections(nftCollections.slice(0, 10).map((item) => (
+    //   {
+    //     address: `0x${item.attributes.address}`,
+    //   }
+      
+    // )));
+  })
+  // const topCollections:any = [];
 
-//   try {
-//     return {
-//       props: {
-//         topCollections,
-//         ...(await serverSideTranslations(locale!, ["common"])),
-//         locale,
-//       },
-//       revalidate: 600, // 10 mins
-//     };
-//   } catch {
-//     return {
-//       props: {
-//         ...(await serverSideTranslations(locale!, ["common"])),
-//         locale,
-//       },
-//     };
-//   }
-// };
+  console.log(topCollection)
+  console.log(topCollections)
+
+  try {
+    return {
+      props: {
+        topCollections,
+        // ...(await serverSideTranslations(locale!, ["common"])),
+        // locale,
+      },
+      revalidate: 600, // 10 mins
+    };
+  } catch {
+    return {
+      props: {
+        // ...(await serverSideTranslations(locale!, ["common"])),
+        locale,
+      },
+    };
+  }
+};
 export default Home;
