@@ -1,54 +1,69 @@
+import { FC, PropsWithChildren } from "react";
 import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
-import { dehydrate, QueryClient } from "react-query";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import { headers } from "config/server";
-import { currentChainInfo } from "config/chains";
 import { getCollectionsBase } from "utils/graphql";
-import { CollectionsSort } from "types/graphql";
-import { collectionsKeys } from "hooks/graphql/collections";
+import { CollectionBase } from "types/graphql";
+import { PageDataFetchError } from "utils/errors";
 import CollectionsView from "views/collections/CollectionsView";
 import Page from "components/Layout/Page";
+import { RealtimeDataStatusProvider } from "components/RealtimeData/context";
+import { getCanonicalAndLanguageAlternates } from "config/seo";
+import { DEFAULT_IS_VERIFIED, DEFAULT_SORT, DEFAULT_TERM } from "views/collections/shared";
+import { COLLECTIONS_PAGINATION_FIRST } from "hooks/graphql/collections";
 
-const CollectionsPage: React.FC = () => {
+type Props = {
+  collections: CollectionBase[];
+};
+const CollectionsPage: FC<PropsWithChildren<Props>> = ({ collections }) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const { canonical, languageAlternates } = getCanonicalAndLanguageAlternates("/collections", router);
+
   return (
     <Page>
       <NextSeo
         title={t("Collections")}
         openGraph={{
-          title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: t("Collections") }),
-          url: `${currentChainInfo.appUrl}/collections`,
+          title: t("{{pageTitle}} | LooksRare", { pageTitle: t("Collections") }),
+          url: canonical,
         }}
+        canonical={canonical}
+        languageAlternates={languageAlternates}
       />
-      <CollectionsView />
+      <RealtimeDataStatusProvider>
+        <CollectionsView initialData={collections} />
+      </RealtimeDataStatusProvider>
     </Page>
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const queryClient = new QueryClient();
+export const getStaticProps: GetStaticProps = async ({ locale = "en" }) => {
   try {
-    await queryClient.prefetchInfiniteQuery(
-      collectionsKeys.infiniteCollections({ isVerified: true }, CollectionsSort.HIGHEST_24H, "base"),
-      () => getCollectionsBase({ filter: { isVerified: true }, sort: CollectionsSort.HIGHEST_24H }, headers)
+    const collections = await getCollectionsBase(
+      {
+        filter: { isVerified: DEFAULT_IS_VERIFIED },
+        sort: DEFAULT_SORT,
+        search: { term: DEFAULT_TERM },
+        pagination: { first: COLLECTIONS_PAGINATION_FIRST },
+      },
+      headers
     );
 
     return {
       props: {
-        ...(await serverSideTranslations(locale!, ["common"])),
+        ...(await serverSideTranslations(locale)),
         locale,
-        // Known issue with serializing undefined pageParams[0] in infiniteQuery prefetch https://github.com/tannerlinsley/react-query/issues/1458
-        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+        collections,
       },
       revalidate: 60,
     };
-  } catch (error) {
-    console.error(error);
-    return {
-      notFound: true,
-    };
+  } catch (e) {
+    throw new PageDataFetchError("/collections", e);
   }
 };
 

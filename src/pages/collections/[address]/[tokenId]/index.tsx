@@ -1,68 +1,52 @@
-import { GetServerSideProps } from "next";
-import { ethers } from "ethers";
-import { NextSeo } from "next-seo";
-import { useWeb3React } from "@web3-react/core";
-import { getCloudinaryUrl } from "@looksrare/shared";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { currentChainInfo } from "config/chains";
-import { seoBaseImage } from "config/seo";
-import { headers } from "config/server";
-import { NFT } from "types/graphql";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useTranslation } from "next-i18next";
-import { getToken } from "utils/graphql";
+import { NextSeo } from "next-seo";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import { currentChainInfo } from "config";
+import { getCanonicalAndLanguageAlternates, seoBaseImage } from "config/seo";
+import { headers } from "config/server";
+import { getCloudinaryUrl } from "utils/mediaLoaders";
+import { ServerSideNft, getServerSideToken } from "utils/graphql";
 import { isValidBigNumber } from "utils/guards";
-import { getTokenOwnerFilter } from "utils/tokens";
-import { useToken, useTokenOwners } from "hooks/graphql/tokens";
-import { useEagerConnect } from "hooks/useEagerConnect";
-import { SingleNftView } from "views/collections/SingleNftView";
+import { safeGetAddress } from "utils/safeGetAddress";
+import { PageDataFetchError } from "utils/errors";
+import { useGetWindowHash } from "hooks/useGetWindowHash";
+import { BulkListingView } from "views/account/BulkListingView";
 import Page from "components/Layout/Page";
+import TokenView from "views/collections/components/SingleNftView/TokenView";
 
 interface Props {
   collectionAddress: string;
   tokenId: string;
-  initialNft: NFT;
+  serverSideNft: ServerSideNft;
 }
 
-const navProps = { borderBottom: "1px solid", borderBottomColor: "border-01" };
-
-const AssetPage: React.FC<Props> = ({ collectionAddress, tokenId, initialNft }) => {
+const AssetPage: React.FC<React.PropsWithChildren<Props>> = ({ collectionAddress, tokenId, serverSideNft }) => {
   const { t } = useTranslation();
-  const { account } = useWeb3React();
-  const hasTriedConnection = useEagerConnect();
-  const { data } = useToken(
-    {
-      collection: collectionAddress,
-      tokenId,
-    },
-    { initialData: initialNft }
+  const router = useRouter();
+  const seoTokenImageSrc = serverSideNft.image.src.replace(currentChainInfo.cdnUrl, "");
+  const isVideo = serverSideNft.image.contentType?.includes("video");
+  const title = `${serverSideNft.name} - ${serverSideNft.collection.name}`;
+  const { canonical, languageAlternates } = getCanonicalAndLanguageAlternates(
+    `/collections/${safeGetAddress(collectionAddress)}/${tokenId}`,
+    router
   );
+  const removeIndex = !serverSideNft.collection.isVerified;
 
-  const tokenOwnersQuery = useTokenOwners(
-    {
-      collection: collectionAddress,
-      tokenId,
-      ownerFilter: getTokenOwnerFilter({ connectedAccount: account, collectionType: initialNft.collection.type }),
-    },
-    { enabled: hasTriedConnection }
-  );
-
-  // Because we are supplying the useToken query with initial data we need to tell TS
-  // that we know the data is available immediately
-  const token = data!;
-
-  const seoTokenImageSrc = token.image.src.replace(currentChainInfo.cdnUrl, "");
-  const isVideo = token.image.contentType?.includes("video");
-  const title = `${token.name} - ${token.collection.name}`;
+  const hash = useGetWindowHash();
 
   return (
-    <Page navProps={navProps}>
+    <Page>
       <NextSeo
+        noindex={removeIndex}
+        nofollow={removeIndex}
         title={title}
-        description={token.description}
+        description={serverSideNft.description}
         openGraph={{
-          url: `${currentChainInfo.appUrl}/collections/${collectionAddress}/${tokenId}`,
-          title: t("{{pageTitle}} | OpenEyes.nft", { pageTitle: title }),
-          description: token.description,
+          url: canonical,
+          title: t("{{pageTitle}} | LooksRare", { pageTitle: title }),
+          description: serverSideNft.description,
           images: [
             isVideo
               ? seoBaseImage
@@ -72,41 +56,60 @@ const AssetPage: React.FC<Props> = ({ collectionAddress, tokenId, initialNft }) 
                     width: 1200,
                     baseCloudinaryUrl: currentChainInfo.cloudinaryUrl,
                   }),
-                  alt: token.name,
+                  alt: serverSideNft.name,
                   width: 1200,
                 },
           ],
         }}
+        canonical={canonical}
+        languageAlternates={languageAlternates}
       />
-      <SingleNftView nft={token} tokenOwnersQuery={tokenOwnersQuery} />
+      {hash === "#sell" && <BulkListingView />}
+      {hash !== "#sell" && (
+        <TokenView serverSideNft={serverSideNft} tokenId={tokenId} collectionAddress={collectionAddress} />
+      )}
     </Page>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ locale, params, res }) => {
+export const getStaticProps: GetStaticProps = async ({ locale = "en", params }) => {
   try {
-    const collectionAddress = ethers.utils.getAddress(params?.address as string);
+    const collectionAddress = safeGetAddress(params?.address as string);
+    if (!collectionAddress) {
+      return { notFound: true };
+    }
     const tokenId = params?.tokenId as string;
 
     if (isValidBigNumber(tokenId) === false) {
       throw new Error("Invalid or out of range number");
     }
 
-    const nft = await getToken({ collection: collectionAddress, tokenId }, headers);
-    res.setHeader("Cache-Control", "public, s-maxage=15, stale-while-revalidate=60");
+    const nft = await getServerSideToken({ collection: collectionAddress, tokenId }, headers);
+    if (!nft) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
       props: {
-        ...(await serverSideTranslations(locale!, ["common"])),
+        ...(await serverSideTranslations(locale)),
         collectionAddress,
-        initialNft: nft,
+        serverSideNft: nft,
         tokenId,
       },
+      revalidate: 10,
     };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
+  } catch (e) {
+    throw new PageDataFetchError(`/collections/${params?.address || "[address]"}/${params?.tokenId || ["tokenId"]}`, e);
   }
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [], // No pages created at build time
+    fallback: "blocking",
+  };
 };
 
 export default AssetPage;
